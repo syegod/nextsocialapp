@@ -17,9 +17,9 @@ const Header = () => {
     }
     return (
         <>
-            <div className="sm:px-10 md:px-72 w-full h-10 bg-purple-500 text-white flex items-center justify-between select-none">
+            <div className="sm:px-10 md:px-16 xl:px-72 w-full h-16 bg-white text-violet-600 flex items-center justify-between select-none">
 
-                <Link className="text-3xl font-semibold drop-shadow-lg" href={'/'}>
+                <Link className="text-4xl font-semibold drop-shadow-lg" href={'/'}>
                     NextSocial
                 </Link>
                 {!authcontext.isAuthenticated &&
@@ -29,8 +29,8 @@ const Header = () => {
                 }
                 {authcontext.isAuthenticated && 
                     <div className="flex text-2xl items-center gap-x-5 md:gap-x-[5ch]">
-                        <Link href={`/profile/${authcontext.userId}`}><i className="fa-solid fa-user cursor-pointer"></i></Link>
-                        <i className="fa-solid fa-right-from-bracket cursor-pointer" onClick={() => handleLogout()}></i>
+                        <Link href={`/profile/${authcontext.userId}`}><i className="fa-solid fa-user cursor-pointer hover:scale-110 duration-100"></i></Link>
+                        <i className="fa-solid fa-right-from-bracket cursor-pointer hover:scale-110 duration-100" onClick={() => handleLogout()}></i>
                     </div>
                 }
             </div>

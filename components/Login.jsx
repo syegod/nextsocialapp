@@ -46,7 +46,7 @@ const Login = () => {
                 <div className="text-red-500 text-sm">
                     {error}
                 </div>}
-            <div className="flex flex-col gap-y-5">
+            <div className="flex flex-col gap-y-5 font-normal">
                 <div className="flex flex-col gap-y-1">
                     <span>Username:</span>
                     <input type="text" name="username" onChange={e => inputHandler(e)} className="border-2 px-2 outline-none" />
@@ -61,7 +61,7 @@ const Login = () => {
                     <span>Password:</span>
                     <input type="password" name="password" onChange={e => inputHandler(e)} className="border-2 px-2 outline-none" />
                 </div>
-                <button className="bg-purple-500 text-white drop-shadow-lg" onClick={() => submitHandler()}>{isSignIn ? 'Login' : 'Register'}</button>
+                <button className="bg-gradient-to-r from-purple-500 to-violet-500 text-white drop-shadow-lg" onClick={() => submitHandler()}>{isSignIn ? 'Login' : 'Register'}</button>
             </div>
             <NotificationContainer />
         </div>
