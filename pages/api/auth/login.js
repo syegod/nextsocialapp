@@ -7,9 +7,12 @@ import { serialize } from "cookie"
 
 export default async function login(req, res) {
     try {
-        main()
+        
+        const {UserJWT} = req.cookies
+        if(UserJWT)
+            return res.status(300).json({ message: 'Already logged in!' })
         const { username, password } = req.body
-
+        main()
         const candidate = await User.findOne({ username })
 
         if (!candidate) {

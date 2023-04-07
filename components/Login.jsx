@@ -27,7 +27,7 @@ const Login = () => {
             response = await axios.post('/api/auth/login', form).then(f => {NotificationManager.success(f.data.message); return router.reload()}, e => NotificationManager.error(e.response.data.message))
         }
         else {
-            response = await axios.post('/api/auth/register', form).then(f => {NotificationManager.success(f.data.message); return router.reload()}, e => {return NotificationManager.error(e.response.data)})
+            response = await axios.post('/api/auth/register', form).then(f => {NotificationManager.success(f.data.message); return router.reload()}, e => NotificationManager.error(e.response.data.message))
         }
     }
 
