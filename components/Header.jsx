@@ -17,10 +17,10 @@ const Header = () => {
     }
     return (
         <>
-            <div className="sm:px-10 md:px-16 xl:px-72 w-full h-16 bg-white text-violet-600 flex items-center justify-between select-none">
+            <div className="px-2 md:px-16 xl:px-72 w-full h-16 bg-white text-violet-600 flex items-center justify-between select-none">
 
-                <Link className="text-4xl font-semibold drop-shadow-lg outline-none" href={'/'}>
-                    NextSocial
+                <Link className="text-4xl font-extrabold drop-shadow-lg outline-none" href={'/'}>
+                    NextFilms
                 </Link>
                 {!authcontext.isAuthenticated &&
                     <div className="flex gap-x-5 items-center">

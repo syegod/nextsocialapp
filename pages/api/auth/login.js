@@ -30,7 +30,7 @@ export default async function login(req, res) {
                 username: candidate.username,
                 type: candidate.type
             },
-            process.env.NEXT_JWT_SECRET
+            process.env.NEXT_PUBLIC_JWT_SECRET
         )
         const serialized = serialize("UserJWT", token, {
             httpOnly: true,
