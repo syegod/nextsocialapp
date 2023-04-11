@@ -19,7 +19,7 @@ const Header = () => {
         <>
             <div className="sm:px-10 md:px-16 xl:px-72 w-full h-16 bg-white text-violet-600 flex items-center justify-between select-none">
 
-                <Link className="text-4xl font-semibold drop-shadow-lg" href={'/'}>
+                <Link className="text-4xl font-semibold drop-shadow-lg outline-none" href={'/'}>
                     NextSocial
                 </Link>
                 {!authcontext.isAuthenticated &&
