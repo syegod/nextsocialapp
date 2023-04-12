@@ -3,7 +3,7 @@ import { User } from "@/db/models"
 import { verify } from "jsonwebtoken"
 import * as bcrypt from 'bcryptjs'
 
-export default async function getjwtdata(req, res) {
+export default async function updateuser(req, res) {
     try {
         const { UserJWT } = req.cookies
         if (!UserJWT)

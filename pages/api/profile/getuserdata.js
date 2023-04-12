@@ -1,5 +1,6 @@
 import main from "@/db/main"
 import { User } from "@/db/models"
+import axios from "axios"
 
 export default async function getuserdata(req, res) {
     try {
