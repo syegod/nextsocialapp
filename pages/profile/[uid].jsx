@@ -16,19 +16,12 @@ const Profile = () => {
     const handleImageUploadToServer = async (event) => {
         if (isOwnProfile) {
             const file = event.target.files[0]
-
             const formData = new FormData()
             formData.append('file', file)
-            formData.append('public_id', user._id)
-            formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET)
-            formData.append('folder', `${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER}/avatars`)
-
-            const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`, formData)
-            if (response && response.status === 200) {
-                NotificationManager.success('Success!')
-                const updateuseravatarres = await axios.post(`/api/profile/updateuseravatar`, { avatar: process.env.NEXT_PUBLIC_CLOUDINARY_FOLDERS_PATH + '/avatars/' + user._id })
-            } else if (response.status !== 200) {
-                NotificationManager.error('Error. Please try again.')
+            formData.append('uid', user._id)
+            const response = await axios.post(`/api/profile/updateuseravatar`, formData)
+            if(response && response.status === 200){
+                return router.reload()
             }
         }
     }
@@ -38,11 +31,13 @@ const Profile = () => {
 
             const response1 = await axios.post('/api/profile/getuserdata', { uid: uid }).catch(e => console.log(e.response.data.message))
             const response2 = await axios.post('/api/auth/getjwtdata').catch(e => console.log(e.response.data.message))
-            if ((response1 && response1.data) && (response2 && response2.data)) {
+            if (response1 && response1.data) {
                 setUser(response1.data)
-                setIsOwnProfile(response1.data._id === response2.data.userdata._id)
+                if (response2 && response2.data) {
+                    setIsOwnProfile(response1.data._id === response2.data.userdata._id)
+                }
             }
-            
+
             setLoading(false)
         }
         getUserData()
@@ -52,10 +47,10 @@ const Profile = () => {
         <div className="flex flex-col">
             {loading && <i className="fa-solid fa-spinner animate-spin text-4xl my-auto"></i>}
             {!loading &&
-                <div className="bg-white text-violet-600 font-extrabold items-center md:text-3xl text-gradient-to-r from-blue-500 to-purple-500 text-center p-2 md:p-5 h-max my-auto md:max-w-max md:max-w-[30ch] xl:max-w-[60ch] flex flex-col gap-y-3">
-                    <div className="flex flex-col xl:flex-row items-center w-full gap-y-2">
-                        {!loading && <img src={`${process.env.NEXT_PUBLIC_CLOUDINARY_FOLDERS_PATH}/avatars/${user._id}`} width={72} height={72} className={`border rounded-full shadow-lg ${isOwnProfile && 'cursor-pointer'} justify-self-start`} onClick={() => { if (isOwnProfile) document.getElementById('userimage').click() }}></img>}
-                        <input type="file" className="hidden" id="userimage" onChange={handleImageUploadToServer} />
+                <div className="bg-white text-violet-600 font-extrabold items-center md:text-3xl text-center p-2 md:p-5 h-max my-auto md:min-w-[30ch] md:max-w-max md:max-w-[30ch] xl:max-w-[60ch] flex flex-col gap-y-3">
+                    <div className="flex flex-col items-center w-full gap-y-2">
+                        <img src={user.avatar} className={`border w-24 h-24 rounded-full shadow-lg ${isOwnProfile && 'cursor-pointer'}`} onClick={() => { if (isOwnProfile) document.getElementById('userimage').click() }}></img>
+                        <input type="file" accept="image/png, image/jpeg" className="hidden" id="userimage" onChange={handleImageUploadToServer} />
                         <span className="font-extrabold text-transparent text-2xl lg:text-6xl bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto">{user.username}</span>
                     </div>
                     <hr className="w-full"></hr>
