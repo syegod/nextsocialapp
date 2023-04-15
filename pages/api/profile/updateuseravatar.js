@@ -19,19 +19,7 @@ export const config = {
 
 export default async function updateuseravatar(req, res) {
     try {
-        main()
-        const form = formidable({ keepExtensions: true });
-        form.parse(req, async (err, fields, files) => {
-            const result = await cloudinary.v2.uploader.upload(files.file.filepath,
-                {
-                    public_id: fields.uid,
-                    folder: 'nextfilms/avatars',
-                    overwrite: true,
-                    resource_type: 'image',
-                })
-            const user = await User.findOne({ _id: fields.uid })
-            user.avatar = result.secure_url
-            await user.save()
+        const {aboba} = req.body
         });
 
         return res.status(200).json({ message: 'Done!' })

@@ -19,7 +19,7 @@ const Profile = () => {
             const formData = new FormData()
             formData.append('file', file)
             formData.append('uid', user._id)
-            const response = await axios.postForm(`/api/profile/updateuseravatar`, formData)
+            const response = await axios.post(`/api/profile/updateuseravatar`, {aboba:'test'})
             if(response && response.status === 200){
                 return router.reload()
             }
