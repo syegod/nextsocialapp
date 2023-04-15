@@ -7,7 +7,7 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 
 
 const Profile = () => {
-    const router = useRouter()
+    const router = useRouter() 
     const { uid } = router.query
     const [user, setUser] = useState({})
     const [loading, setLoading] = useState(false)
@@ -19,7 +19,10 @@ const Profile = () => {
             const formData = new FormData()
             formData.append('file', file)
             formData.append('uid', user._id)
-            const response = await axios.post(`/api/profile/updateuseravatar`, formData)
+            const response = await axios.postForm(`/api/profile/updateuseravatar`, formData)
+            if(response && response.status === 200){
+                return router.reload()
+            }
         }
     }
     useEffect(() => {
@@ -47,7 +50,7 @@ const Profile = () => {
                 <div className="bg-white text-violet-600 font-extrabold items-center md:text-3xl text-center p-2 md:p-5 h-max my-auto md:min-w-[30ch] md:max-w-max md:max-w-[30ch] xl:max-w-[60ch] flex flex-col gap-y-3">
                     <div className="flex flex-col items-center w-full gap-y-2">
                         <img src={user.avatar} className={`border w-24 h-24 rounded-full shadow-lg ${isOwnProfile && 'cursor-pointer'}`} onClick={() => { if (isOwnProfile) document.getElementById('userimage').click() }}></img>
-                        <input type="file" accept="image/png, image/jpeg" className="hidden" id="userimage" onChange={handleImageUploadToServer} />
+                        <input type="file" accept="image/png, image/jpeg" className="hidden" id="userimage" onChange={()=>handleImageUploadToServer} />
                         <span className="font-extrabold text-transparent text-2xl lg:text-6xl bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mx-auto">{user.username}</span>
                     </div>
                     <hr className="w-full"></hr>
