@@ -20,7 +20,7 @@ export const config = {
 export default async function updateuseravatar(req, res) {
     try {
         const {aboba} = req.body
-        });
+        
 
         return res.status(200).json({ message: 'Done!' })
     } catch (e) {
