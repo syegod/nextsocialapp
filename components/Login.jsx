@@ -63,7 +63,6 @@ const Login = () => {
                 </div>
                 <button className="bg-gradient-to-r from-purple-500 to-violet-500 text-white drop-shadow-lg" onClick={() => submitHandler()}>{isSignIn ? 'Login' : 'Register'}</button>
             </div>
-            <NotificationContainer />
         </div>
     );
 }
