@@ -22,7 +22,8 @@ const FilmSchema = new Schema({
     image: { type: [String] },
     genres: {type: [String] },
     country: { type: String },
-    releaseDate: { type: Date }
+    releaseDate: { type: Date },
+    role: {type: String}
 })
 let Film
 try {

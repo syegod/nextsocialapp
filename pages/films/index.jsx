@@ -1,18 +1,38 @@
+import FilmCard from "@/components/FilmCard";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Film from "./[fid]";
+import SideBar from "@/components/SideBar";
 
 const Index = () => {
-    useEffect(async () => {
-        const response = await axios.get('/api/films/getallfilms')
-    }, [])
+    const [filmList, setFilmList] = useState([])
+    const [loading, setLoading] = useState(false)
 
+    async function getAllFilms() {
+        setLoading(true)
+        const response = await axios.get('/api/films/getallfilms')
+        if (response && response.status === 200) {
+            setFilmList(response.data)
+        }
+        setLoading(false)
+    }
+    useEffect(() => {
+        getAllFilms()
+    }, [])
     return (
-        <div>
-            test
+        <div className="flex gap-x-10 my-10">
+            <SideBar setFilmList={setFilmList} setLoading={setLoading} filmList={filmList} getAllFilms={getAllFilms}></SideBar>
+            {loading && <i className="fa-solid fa-spinner animate-spin text-4xl absolute top-1/3 left-1/2"></i>}
+            <div className="w-full flex flex-col gap-y-10 items-center">
+            {filmList.length === 0 && <span>Nothing found!</span>}
+            {!loading && filmList.map(e => 
+                    <div className="">
+                        <FilmCard key={e._id} film={e} />
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
 
 export default Index;
-
-

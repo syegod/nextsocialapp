@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import axios from 'axios';
 import { NotificationManager } from 'react-notifications';
-import { OutlinedInput, Box, Chip, TextField, Select, FormControl, MenuItem, Checkbox, ListItemText, InputLabel } from '@mui/material';
+import { OutlinedInput, Box, Chip, TextField, Select, FormControl, MenuItem, Checkbox, ListItemText } from '@mui/material';
 
 
 
@@ -28,7 +28,8 @@ const genres = [
     'mystery',
     'romance',
     'war',
-    'thriller'
+    'thriller',
+    'sci-fi'
 ];
 const countries = [
     'usa',
@@ -53,6 +54,7 @@ const Addfilm = () => {
         title: '', description: '', genres: [], country: '', releaseDate: null
     })
 
+    
     const handleGenres = (e) => {
         const {
             target: { value },
@@ -61,6 +63,7 @@ const Addfilm = () => {
             ...form, ['genres']: typeof value === 'string' ? value.split(',') : value,
         });
     }
+
     const handleInputs = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
@@ -80,9 +83,10 @@ const Addfilm = () => {
     }
 
     return (
-        <div className='flex flex-col w-full text-center my-16 gap-y-5'>
+        <div className='flex flex-col w-full text-center my-16 max-w-[35ch] min-w-[5ch] gap-y-5'>
             <span className='text-4xl font-extrabold'>Add new film</span>
-            <form onSubmit={e => handleForm(e)} className='flex flex-col gap-y-5 w-full mx-auto max-w-[35ch] min-w-[5ch]'>
+            <form onSubmit={e => handleForm(e)} className='flex flex-col gap-y-5 w-full'>
+                <hr className='w-full'/>
                 <div className='flex flex-col gap-y-1'>
                     <span className='text-2xl'>Title*:</span>
                     <TextField variant='standard' name="title" className='px-1' id="outlined-multiline-flexible" sx={{ bgcolor: 'white', borderRadius: '3px' }} onChange={handleInputs} multiline maxRows={2} required={true} />
@@ -94,7 +98,7 @@ const Addfilm = () => {
 
                 <div className='flex flex-col'>
                     <span className='text-2xl'>Genre*:</span>
-                    <FormControl sx={{maxWidth:'35ch'}}>
+                    <FormControl sx={{  }}>
                         <Select
                             multiple
                             labelId="demo-multiple-checkbox-label"
@@ -113,12 +117,11 @@ const Addfilm = () => {
                                     ))}
                                 </Box>
                             )}
-                            MenuProps={MenuProps}
-                        >
+                            MenuProps={MenuProps}>
                             {genres.map((genre) => (
                                 <MenuItem key={genre} value={genre}>
                                     <Checkbox checked={form.genres.indexOf(genre) > -1} />
-                                    <ListItemText primary={genre.slice(0, 1)[0].toLocaleUpperCase()+genre.slice(1,genre.length)} />
+                                    <ListItemText primary={genre.slice(0, 1)[0].toLocaleUpperCase() + genre.slice(1, genre.length)} />
                                 </MenuItem>
                             ))}
                         </Select>
@@ -126,7 +129,7 @@ const Addfilm = () => {
                 </div>
                 <div className='flex flex-col gap-y-1'>
                     <span className='text-2xl'>Country*:</span>
-                    <FormControl sx={{maxWidth:'35ch'}}>
+                    <FormControl >
                         <Select
                             sx={{ bgcolor: 'white' }}
                             size='small'
@@ -136,7 +139,7 @@ const Addfilm = () => {
                             MenuProps={MenuProps}
                         >
                             {countries.map(c => (
-                                <MenuItem key={c} value={c}>{c.slice(0, 1)[0].toLocaleUpperCase()+c.slice(1,c.length)}</MenuItem>
+                                <MenuItem key={c} value={c}>{c.slice(0, 1)[0].toLocaleUpperCase() + c.slice(1, c.length)}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>

@@ -5,7 +5,7 @@ import { useContext } from "react";
 const Film = () => {
     const router = useRouter()
     const {fid} = router.query
-    const user = useContext(AuthContext)
+    const authContext = useContext(AuthContext)
     return (
         <div className="flex my-auto">
             {fid}
