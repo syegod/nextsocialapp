@@ -10,6 +10,7 @@ module.exports = {
   ],
   theme: {
     fontFamily:{
+      'serif': ['Roboto'],
       'sans': ['Montserrat']
     },
     extend: {},

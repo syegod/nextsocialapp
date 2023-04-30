@@ -1,14 +1,15 @@
 import React from 'react';
 import noimage from '../images/noimage.jpg'
+import Link from 'next/link';
 
 const FilmCard = (props) => {
     const { film } = props
-    const { title, description, genres, releaseDate } = film
+    const {_id, title, description, genres, releaseDate } = film
     return (
-        <div className='h-[16ch] bg-white flex rounded-lg hover:scale-105 cursor-pointer duration-300 w-[30ch]  sm:w-[50ch]'>
+        <div className='h-[16ch] bg-white flex rounded-lg duration-300 w-[30ch]  sm:w-[50ch]'>
             {/* <img src={noimage.src} width={'260px'} height={'380px'} className='border-r bg-black'></img> */}
             <div className='text-center flex flex-col text-black py-2 w-full'>
-                <span className='overflow-clip font-semibold text-lg'>{title}</span>
+                <Link href={'/films/'+_id} className='overflow-clip font-semibold text-lg cursor-pointer hover:text-blue-500 duration-300'>{title}</Link>
                 <hr className='w-full bg-slate-300' />
                 <div className='overflow-hidden h-[8ch] p-2 flex justify-between w-full'>
                     <span>

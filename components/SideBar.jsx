@@ -46,12 +46,10 @@ const countries = [
     'norway'
 ]
 
-
 const SideBar = (props) => {
-
     const { setFilmList, setLoading, filmList, getAllFilms } = props
     const defaultFilter = { rating: [0, 10], year: [1970, 2025], genres: [], country: null }
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const [filter, setFilter] = useState(defaultFilter)
 
     async function handleForm(e) {
