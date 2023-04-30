@@ -50,11 +50,11 @@ const Header = () => {
                     </div>
                 }
                 <div className="block md:hidden">
-                    <i class="fa-solid fa-bars cursor-pointer text-3xl" onClick={() => setDropdownIsOpen(!dropdownIsOpen)}></i>
+                    <i className="fa-solid fa-bars cursor-pointer text-3xl" onClick={() => setDropdownIsOpen(!dropdownIsOpen)}></i>
                 </div>
             </div>
             {loginModal && <Modal setModal={setLoginModal}><Login></Login></Modal>}
-            <div className="z-40"><DropdownMenu isOpen={dropdownIsOpen} /></div>
+            <div className="z-40"><DropdownMenu isOpen={dropdownIsOpen} setDropdownIsOpen={setDropdownIsOpen} setLoginModal={setLoginModal} handleLogout={handleLogout}/></div>
         </>
     );
 }
