@@ -8,7 +8,6 @@ import 'react-notifications/lib/notifications.css';
 import { NotificationManager } from 'react-notifications';
 import { useRouter } from "next/router";
 import DropdownMenu from "./DropdownMenu";
-import { useTransition, animated } from "react-spring";
 
 
 const Header = () => {

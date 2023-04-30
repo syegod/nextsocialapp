@@ -47,9 +47,9 @@ const countries = [
 ]
 
 const SideBar = (props) => {
-    const { setFilmList, setLoading, filmList, getAllFilms } = props
+    const { setFilmList, setLoading, filmList, getAllFilms, isOpen, setIsOpen } = props
     const defaultFilter = { rating: [0, 10], year: [1970, 2025], genres: [], country: null }
-    const [isOpen, setIsOpen] = useState(false)
+
     const [filter, setFilter] = useState(defaultFilter)
 
     async function handleForm(e) {
@@ -88,8 +88,9 @@ const SideBar = (props) => {
 
     return (
         <>
-            <div onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} className={`fixed bg-gradient-to-b from-blue-500 to-cyan-500 left-0 top-0 z-10 h-screen bg-black w-72 text-2xl ${!isOpen && `-translate-x-48`} ${isOpen && 'overflow-y-auto overflow-x-hidden'} duration-300 px-5 py-36`}>
+            <div onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)} className={`fixed bg-gradient-to-b from-blue-500 to-cyan-500 left-0 top-0 z-10 h-screen bg-black w-72 text-2xl ${!isOpen && `-translate-x-72 sm:-translate-x-48`} ${isOpen && 'overflow-y-auto overflow-x-hidden'} duration-300 px-5 py-36`}>
                 <form onSubmit={handleForm} className='flex flex-col items-center gap-y-10 h-full'>
+                    <i className="block sm:hidden fa-solid fa-xmark text-3xl absolute top-20 right-5 cursor-pointer" onClick={() => setIsOpen(false)}></i>
                     <span className='text-3xl font-medium'>FILTER</span>
                     <hr className='bg-slate-300 w-full' />
                     <span className='text-lg select-none cursor-pointer flex items-center gap-x-2' onClick={() => { getAllFilms(); return setFilter(defaultFilter) }}>Remove all filters <i className="fa-solid fa-xmark"></i></span>
