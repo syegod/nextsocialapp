@@ -18,7 +18,7 @@ export default async function register(req, res) {
         await user.save()
         return res.status(201).json({ message: 'User succesfully created!' })
     } catch (e) {
-        res.status(500).json({ message: e.message || 'Error' })
+        res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
 
 }

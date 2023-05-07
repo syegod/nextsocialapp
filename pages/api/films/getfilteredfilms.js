@@ -16,15 +16,12 @@ export default async function getfilteredfilms(req, res) {
                 });
             }
             if (filter.country) {
-                films.forEach(e => console.log(e.country))
                 films = films.filter(e => e.country == filter.country)
             }
         }
-
-
         return res.status(200).json(films)
     } catch (e) {
-        return res.status(500).json({ message: e.message || 'Something goes wrong!' })
+        return res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
 
 }

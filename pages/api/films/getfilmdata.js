@@ -11,6 +11,6 @@ export default async function getfilmdata(req, res) {
         if (candidate)
             return res.status(200).json(candidate)
     } catch (e) {
-        return res.status(500).json({ message: e.message || 'Something goes wrong!' })
+        return res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
 }

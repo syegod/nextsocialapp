@@ -93,7 +93,7 @@ const SideBar = (props) => {
                     <i className="block sm:hidden fa-solid fa-xmark text-3xl absolute top-20 right-5 cursor-pointer" onClick={() => setIsOpen(false)}></i>
                     <span className='text-3xl font-medium'>FILTER</span>
                     <hr className='bg-slate-300 w-full' />
-                    <span className='text-lg select-none cursor-pointer flex items-center gap-x-2' onClick={() => { getAllFilms(); return setFilter(defaultFilter) }}>Remove all filters <i className="fa-solid fa-xmark"></i></span>
+                    <span className='text-lg select-none cursor-pointer flex items-center gap-x-2' onClick={() => { getAllFilms(); setIsOpen(false); return setFilter(defaultFilter) }}>Remove all filters <i className="fa-solid fa-xmark"></i></span>
                     <div className='flex flex-col gap-y-1 items-center w-full'>
                         Year
                         <Box sx={{ width: '100%' }}>
@@ -172,7 +172,7 @@ const SideBar = (props) => {
                             </Select>
                         </FormControl>
                     </div>
-                    <button className='bg-violet-500 px-3 py-1 shadow-lg mb-10 rounded-sm hover:-translate-y-1 hover:translate-x-1 duration-300'>Update</button>
+                    <button className='bg-violet-500 px-3 py-1 shadow-lg mb-10 rounded-sm hover:-translate-y-1 hover:translate-x-1 duration-300' onClick={() => setIsOpen(false)}>Update</button>
                 </form>
             </div>
         </>

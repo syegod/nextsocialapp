@@ -19,7 +19,7 @@ export default async function addcomment(req, res) {
         await commentDoc.save()
         return res.status(201).json({message: 'Comment succesfully added!'})
     } catch (e) {
-        return res.status(500).json({ message: e.message || 'Something goes wrong!' })
+        return res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
     
 }

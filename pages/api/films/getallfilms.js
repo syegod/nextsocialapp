@@ -7,7 +7,7 @@ export default async function getallfilms(req, res) {
         let films = await Film.find({})
         return res.status(200).json(films)
     } catch (e) {
-        return res.status(500).json({ message: e.message || 'Something goes wrong!' })
+        return res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
 
 }

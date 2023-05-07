@@ -5,6 +5,12 @@ const UserSchema = new Schema({
     email: { type: String, unique: true, require: true },
     password: { type: String, require: true },
     avatar: { type: String },
+    watchedFilms: [{
+        film: { type: Types.ObjectId, ref: 'Film' },
+        rating: { type: Number },
+        date: { type: Date },
+        _id: {type: Number}
+    }],
     comments: [{ type: Types.ObjectId, ref: 'Comment' }]
 })
 let User
@@ -19,12 +25,16 @@ export { User }
 const FilmSchema = new Schema({
     title: { type: String, unique: true, require: true },
     description: { type: String, require: true },
-    rating: { type: Number },
+    rating: {
+        ratingSum: {type:Number, default: 0},
+        ratedBy: [{userid:{type: Types.ObjectId, ref: 'User'}}]
+    },
     image: [{ type: String }],
     genres: [{ type: String }],
     country: { type: String },
     releaseDate: { type: Date },
-    comments: [{ type: Types.ObjectId, ref: 'Comment' }]
+    comments: [{ type: Types.ObjectId, ref: 'Comment' }],
+    inLists: [{userid:{type: Types.ObjectId, ref: 'User'}}]
 })
 let Film
 try {

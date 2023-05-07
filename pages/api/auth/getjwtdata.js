@@ -11,7 +11,7 @@ export default async function getjwtdata(req, res) {
         const data = verify(UserJWT, process.env.NEXT_PUBLIC_JWT_SECRET)
         return res.status(200).json({token:UserJWT, userdata: data})
     } catch (e) { 
-        return res.status(500).json({ message: e.message || 'Something goes wrong!' })
+        return res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
 
 }

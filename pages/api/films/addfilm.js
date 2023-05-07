@@ -13,7 +13,7 @@ export default async function addfilm(req, res) {
         await film.save()
         return res.status(201).json({message: 'Film succesfully added!'})
     } catch (e) {
-        return res.status(500).json({ message: e.message || 'Something goes wrong!' })
+        return res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
     
 }

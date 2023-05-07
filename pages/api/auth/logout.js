@@ -19,7 +19,7 @@ export default async function logout(req, res) {
             return res.status(200).json({ message: "Success!" })
         }
     } catch (e) {
-        return res.status(500).json({ message: e.message || 'Something goes wrong!' })
+        return res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
 
 }

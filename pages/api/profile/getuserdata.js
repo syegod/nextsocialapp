@@ -8,11 +8,10 @@ export default async function getuserdata(req, res) {
         const { uid } = req.body
         if (!uid)
             return res.status(401).json({message: 'UserID is not provided!'})
-        const candidate = await User.findById(uid)
+        const candidate = await User.findById(uid).populate('comments watchedFilms.film')
         if(candidate)
             return res.status(200).json(candidate)
     } catch (e) { 
-        return res.status(500).json({ message: e.message || 'Something goes wrong!' })
+        return res.status(500).json({ message: e.message || 'Something gone wrong!' })
     }
-
 }
